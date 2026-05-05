@@ -8,6 +8,31 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      workbox: {
+        // Tell Workbox to precache all common asset types, including images.
+        // Without this, images imported in React components are skipped.
+        globPatterns: ["**/*.{js,css,html,svg,png,jpg,jpeg,gif,webp,ico,woff,woff2}"],
+        // The default max file size for precaching is 2MB. Raise it to cover larger images.
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB
+        runtimeCaching: [
+          {
+            // Cache the local /api/avatar proxy endpoint.
+            // StaleWhileRevalidate: serve the cached avatar immediately (fixed URL),
+            // then fetch a new one in the background for the next refresh.
+            // Online = new avatar each visit, offline = last cached avatar shown.
+            urlPattern: /\/api\/avatar/,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "avatar-cache",
+              expiration: {
+                maxEntries: 1,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
+      },
       manifest: {
         name: "Your Name — Software Developer",
         short_name: "Portfolio",
