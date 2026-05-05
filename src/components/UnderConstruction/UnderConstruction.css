@@ -1,0 +1,27 @@
+.under-construction {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem 2rem;
+}
+
+.under-construction-content {
+  text-align: center;
+}
+
+.under-construction-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.under-construction h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.under-construction p {
+  color: var(--text);
+  font-size: 1.1rem;
+}

@@ -1,0 +1,26 @@
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-h);
+  border: 1px solid rgba(124, 92, 191, 0.45);
+}
